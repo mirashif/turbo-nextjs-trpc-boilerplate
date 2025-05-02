@@ -153,6 +153,9 @@ importers:
       drizzle-orm:
         specifier: 'catalog:'
         version: 0.41.0(@types/pg@8.11.14)(gel@2.1.0)(postgres@3.4.5)
+      drizzle-seed:
+        specifier: ^0.3.1
+        version: 0.3.1(drizzle-orm@0.41.0(@types/pg@8.11.14)(gel@2.1.0)(postgres@3.4.5))
       drizzle-zod:
         specifier: 0.7.1
         version: 0.7.1(drizzle-orm@0.41.0(@types/pg@8.11.14)(gel@2.1.0)(postgres@3.4.5))(zod@3.24.3)
@@ -1566,8 +1569,8 @@ packages:
   '@radix-ui/react-visually-hidden@1.2.0':
     resolution: {integrity: sha512-rQj0aAWOpCdCMRbI6pLQm8r7S2BM3YhTa0SzOYD55k+hJA8oo9J+H+9wLM9oMlZWOX/wJWPTzfDfmZkf7LvCfg==}
     peerDependencies:
-      '@types/react': npm:types-react@19.0.0-rc.1
-      '@types/react-dom': npm:types-react-dom@19.0.0-rc.1
+      '@types/react': '*'
+      '@types/react-dom': '*'
       react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
       react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
     peerDependenciesMeta:
@@ -1960,6 +1963,14 @@ packages:
       sqlite3:
         optional: true
 
+  drizzle-seed@0.3.1:
+    resolution: {integrity: sha512-F/0lgvfOAsqlYoHM/QAGut4xXIOXoE5VoAdv2FIl7DpGYVXlAzKuJO+IphkKUFK3Dz+rFlOsQLnMNrvoQ0cx7g==}
+    peerDependencies:
+      drizzle-orm: '>=0.36.4'
+    peerDependenciesMeta:
+      drizzle-orm:
+        optional: true
+
   drizzle-zod@0.7.1:
     resolution: {integrity: sha512-nZzALOdz44/AL2U005UlmMqaQ1qe5JfanvLujiTHiiT8+vZJTBFhj3pY4Vk+L6UWyKFfNmLhk602Hn4kCTynKQ==}
     peerDependencies:
@@ -2342,6 +2353,9 @@ packages:
 
   pump@3.0.2:
     resolution: {integrity: sha512-tUPXtzlGM8FE3P0ZL6DVs/3P58k9nk8/jZeQCurTJylQA8qFYzHFfhBJkuqyE0FifOsQ0uKWekiZ5g8wtr28cw==}
+
+  pure-rand@6.1.0:
+    resolution: {integrity: sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==}
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -3929,6 +3943,12 @@ snapshots:
       gel: 2.1.0
       postgres: 3.4.5
 
+  drizzle-seed@0.3.1(drizzle-orm@0.41.0(@types/pg@8.11.14)(gel@2.1.0)(postgres@3.4.5)):
+    dependencies:
+      pure-rand: 6.1.0
+    optionalDependencies:
+      drizzle-orm: 0.41.0(@types/pg@8.11.14)(gel@2.1.0)(postgres@3.4.5)
+
   drizzle-zod@0.7.1(drizzle-orm@0.41.0(@types/pg@8.11.14)(gel@2.1.0)(postgres@3.4.5))(zod@3.24.3):
     dependencies:
       drizzle-orm: 0.41.0(@types/pg@8.11.14)(gel@2.1.0)(postgres@3.4.5)
@@ -4338,6 +4358,8 @@ snapshots:
     dependencies:
       end-of-stream: 1.4.4
       once: 1.4.0
+
+  pure-rand@6.1.0: {}
 
   queue-microtask@1.2.3: {}
 
