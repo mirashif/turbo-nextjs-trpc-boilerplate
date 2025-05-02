@@ -1,9 +1,9 @@
 import { relations } from "drizzle-orm";
-import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
-import { bigint } from "drizzle-orm/pg-core";
+import { integer } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
-  id: bigint("id", { mode: "bigint" }).primaryKey(),
+  id: serial("id").primaryKey(),
   createdAt: timestamp("created_at").defaultNow(),
   email: text("email").notNull().unique(),
   password: text("password").notNull(),
@@ -14,13 +14,27 @@ export const usersRelations = relations(users, ({ many }) => ({
 }));
 
 export const projects = pgTable("projects", {
-  id: bigint("id", { mode: "bigint" }).primaryKey(),
-  createdAt: timestamp("created_at").defaultNow(),
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
+    .notNull()
     .defaultNow()
     .$onUpdateFn(() => new Date()),
-  name: text("name").notNull(),
-  userId: bigint("user_id", { mode: "bigint" })
-    .references(() => users.id)
+  userId: integer("user_id")
+    .references(() => users.id, { onDelete: "cascade" })
     .notNull(),
 });
+
+export const projectsRelations = relations(projects, ({ one }) => ({
+  user: one(users, {
+    fields: [projects.userId],
+    references: [users.id],
+  }),
+}));
+
+/* TODO: need to check trpc setup. trpc inference isn't working.. :'( */
+export type Project = typeof projects.$inferSelect;
+export type NewProject = typeof projects.$inferInsert;
+export type User = typeof users.$inferSelect;
+export type NewUser = typeof users.$inferInsert;
