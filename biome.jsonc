@@ -1,0 +1,87 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"style": {
+				"noNegationElse": "warn",
+				"useFragmentSyntax": "off",
+				"useLiteralEnumMembers": "error",
+				"noCommaOperator": "error",
+				"useNodejsImportProtocol": "error",
+				"useAsConstAssertion": "error",
+				"useNumericLiterals": "error",
+				"useEnumInitializers": "error",
+				"useSelfClosingElements": "error",
+				"useConst": "error",
+				"useSingleVarDeclarator": "error",
+				"noUnusedTemplateLiteral": "error",
+				"useNumberNamespace": "error",
+				"noInferrableTypes": "error",
+				"useExponentiationOperator": "error",
+				"useTemplate": "error",
+				"noParameterAssign": "error",
+				"noNonNullAssertion": "error",
+				"useDefaultParameterLast": "error",
+				"noArguments": "error",
+				"useImportType": "error",
+				"useExportType": "error",
+				"noUselessElse": "error",
+				"useShorthandFunctionType": "error"
+			},
+			"a11y": {
+				"noAutofocus": "off",
+				"useButtonType": "off"
+			},
+			"correctness": {
+				"useExhaustiveDependencies": "off",
+				"noUnusedVariables": "warn",
+				"noUnusedImports": "warn"
+			},
+			"complexity": {
+				"noForEach": "off"
+			},
+			"suspicious": {
+				"noArrayIndexKey": "off",
+				"noConsole": {
+					"level": "warn",
+					"options": {
+						"allow": ["log"]
+					}
+				},
+				"noEmptyBlockStatements": "error",
+				"useAwait": "error"
+			}
+		}
+	},
+	"javascript": {
+		"jsxRuntime": "reactClassic",
+		"formatter": {
+			"enabled": true,
+			"semicolons": "asNeeded",
+			"quoteStyle": "double",
+			"indentStyle": "tab",
+			"lineWidth": 120,
+			"lineEnding": "lf",
+			"bracketSpacing": true,
+			"jsxQuoteStyle": "double",
+			"arrowParentheses": "asNeeded",
+			"indentWidth": 4
+		}
+	},
+	"json": {
+		"formatter": {
+			"enabled": false
+		}
+	},
+	"files": {
+		"includes": ["**", "!**/node_modules/**/*", "!**/.next/**/*"]
+	}
+}

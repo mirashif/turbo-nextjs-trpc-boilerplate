@@ -1,0 +1,27 @@
+{
+  "name": "@repo/db",
+  "version": "0.0.1",
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./src/client.ts",
+    "./schema": "./src/schema.ts"
+  },
+  "scripts": {
+    "db:studio": "drizzle-kit studio",
+    "db:push": "drizzle-kit push --force",
+    "generate": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "catalog:",
+    "drizzle-zod": "0.7.1",
+    "postgres": "^3.4.5",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/pg": "^8.11.13",
+    "drizzle-kit": "catalog:",
+    "typescript": "catalog:"
+  }
+}

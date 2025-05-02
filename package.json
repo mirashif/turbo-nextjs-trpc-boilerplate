@@ -1,0 +1,20 @@
+{
+  "name": "fromo",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "knip": "knip",
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "format": "turbo format"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "knip": "5.46.2",
+    "turbo": "2.5.0"
+  },
+  "packageManager": "pnpm@9.7.2"
+}

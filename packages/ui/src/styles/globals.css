@@ -1,0 +1,249 @@
+@import 'tailwindcss';
+
+@plugin 'tailwindcss-animate';
+@plugin '@tailwindcss/typography';
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-background: hsl(var(--background));
+  --color-border: hsl(var(--border));
+
+  --color-card: hsl(var(--card) / var(--card-opacity, 1));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-foreground: hsl(var(--foreground));
+  --color-input: hsl(var(--input));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-popover: hsl(var(--popover) / var(--popover-opacity, 1));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-ring: hsl(var(--ring));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar: hsl(var(--sidebar-background) / var(--sidebar-opacity, 1));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+  
+  --backdrop-blur: 16px;
+  --backdrop-saturate: 180%;
+
+  --font-weight-bold: 600;
+  --font-weight-light: 300;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+
+  --container-ultrawide: 2560px;
+
+  --breakpoint-3xl: 1920px;
+  --breakpoint-4xl: 2560px;
+
+  --transition-duration-2000: 2000ms;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes caret-blink {
+    0%,
+    70%,
+    100% {
+      opacity: 1;
+    }
+    20%,
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-3xl)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+@theme {
+  --font-sans: 'font', sans-serif;
+  --font-saf: var(--font-saf);
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@layer base {
+  :root {
+    --background: 210 50% 98%;
+    --foreground: 220 20% 15%;
+    --card: 0 0% 100%;
+    --card-opacity: 0.7;
+    --card-foreground: 220 20% 15%;
+    --popover: 0 0% 100%;
+    --popover-opacity: 0.7;
+    --popover-foreground: 220 20% 15%;
+    --primary: 258.7 85.6% 61.8%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 220 20% 15%;
+    --muted: 220 20% 95%;
+    --muted-foreground: 220 10% 40%;
+    --accent: 216 100% 96%;
+    --accent-foreground: 220 20% 15%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 20% 90%;
+    --input: 220 20% 90%;
+    --ring: 258.7 85.6% 61.8%;
+    --radius: 1rem;
+    --sidebar-background: 210 50% 98%;
+    --sidebar-opacity: 0.85;
+    --sidebar-foreground: 220 20% 15%;
+    --sidebar-primary: 258.7 85.6% 61.8%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 216 100% 96%;
+    --sidebar-accent-foreground: 220 20% 15%;
+    --sidebar-border: 220 20% 90%;
+    --sidebar-ring: 258.7 85.6% 61.8%;
+  }
+
+  .dark {
+    --background: 258.7 85.6% 4.8%;
+    --foreground: 210 20% 98%;
+    --card: 220 20% 10%;
+    --card-opacity: 0.6;
+    --card-foreground: 210 20% 98%;
+    --popover: 220 20% 10%;
+    --popover-opacity: 0.6;
+    --popover-foreground: 210 20% 98%;
+    --primary: 342 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 220 15% 20%;
+    --muted-foreground: 210 10% 70%;
+    --accent: 217 15% 18%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 342 100% 60%;
+    --sidebar-background: 220 20% 8%;
+    --sidebar-opacity: 0.75;
+    --sidebar-foreground: 210 20% 98%;
+    --sidebar-primary: 342 100% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 15% 18%;
+    --sidebar-accent-foreground: 210 20% 98%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 342 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    backdrop-filter: blur(var(--backdrop-blur)) saturate(var(--backdrop-saturate));
+  }
+
+  .frosted-glass {
+    @apply bg-current/70 backdrop-blur-lg backdrop-saturate-150 border border-current/30;
+  }
+
+  /* Add backdrop blur to cards */
+  .bg-card {
+    backdrop-filter: blur(var(--backdrop-blur)) saturate(var(--backdrop-saturate));
+  }
+
+  /* Add backdrop blur to popovers */
+  .bg-popover {
+    backdrop-filter: blur(var(--backdrop-blur)) saturate(var(--backdrop-saturate));
+  }
+
+  /* Add pointer cursor to buttons */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* Add SVG styles */
+  svg {
+    @apply text-foreground;
+  }
+
+  /* Hide search input cancel button */
+  input[type="search"]::-moz-search-cancel-button {
+    display: none;
+  }
+  
+  input[type="search"]::-ms-clear {
+    display: none;
+  }
+  
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}

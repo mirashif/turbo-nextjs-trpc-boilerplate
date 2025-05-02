@@ -1,0 +1,35 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "globalDependencies": [".env"],
+    "tasks": {
+      "build": {
+        "dependsOn": ["^build"],
+        "env": ["DATABASE_URL"],
+        "inputs": ["$TURBO_DEFAULT$"],
+        "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      },
+      "lint": {
+        "dependsOn": ["^lint"]
+      },
+      "check-types": {
+        "dependsOn": ["^check-types"]
+      },
+      "dev": {
+        "cache": false,
+        "persistent": true
+      },
+      "db:push": {
+        "dependsOn": ["^db:push"],
+        "cache": false
+      },
+      "test": {
+        "dependsOn": ["^test"]
+      },
+      "db:studio": {
+        "persistent": true,
+        "cache": false,
+        "env": ["DATABASE_URL"]
+      }
+    }
+  }
+  
