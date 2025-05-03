@@ -4,7 +4,7 @@ import { Toaster } from "@repo/ui/components/sonner"
 import type { Metadata } from "next"
 import { Nunito } from "next/font/google"
 
-import { TRPCProvider } from "../lib/providers/trpc-provider"
+import { TRPCReactProvider } from "../trpc/client"
 
 const nunito = Nunito({
 	subsets: ["latin"],
@@ -25,12 +25,12 @@ export default async function RootLayout({
 }>) {
 	return (
 		<html lang="en" className="dark">
-			<TRPCProvider>
+			<TRPCReactProvider>
 				<body className={`${nunito.className} antialiased min-h-dvh text-foreground`}>
 					<Toaster />
 					<main>{children}</main>
 				</body>
-			</TRPCProvider>
+			</TRPCReactProvider>
 		</html>
 	)
 }

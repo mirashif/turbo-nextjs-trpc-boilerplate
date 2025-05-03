@@ -1,6 +1,5 @@
 "use client"
 
-import type { Project, User } from "@repo/db"
 import {
 	Table,
 	TableBody,
@@ -12,14 +11,11 @@ import {
 	TableRow,
 } from "@repo/ui/components/table"
 import { useSuspenseQuery } from "@tanstack/react-query"
-import { useTRPC } from "#/lib/providers/trpc-provider"
-
-/* TODO: need to check trpc setup. trpc inference isn't working.. :'( */
-type ProjectsResult = Array<Omit<Project, "userId"> & { user: Pick<User, "id" | "email"> }>
+import { useTRPC } from "#/trpc/client"
 
 export function Projects() {
 	const trpc = useTRPC()
-	const { data: projects } = useSuspenseQuery<ProjectsResult>(trpc.projects.queryOptions())
+	const { data: projects } = useSuspenseQuery(trpc.projects.queryOptions())
 
 	return (
 		<Table>

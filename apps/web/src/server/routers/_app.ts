@@ -1,5 +1,5 @@
-import { createContext } from "../trpc/context"
-import { createCallerFactory, publicProcedure, router } from "../trpc/init"
+import { createTRPCContext } from "../../trpc/context"
+import { createCallerFactory, publicProcedure, router } from "../../trpc/init"
 
 export const appRouter = router({
 	healthcheck: publicProcedure.query(() => "ok"),
@@ -18,6 +18,6 @@ export const appRouter = router({
 	}),
 })
 
-export const caller = createCallerFactory(appRouter)(createContext)
+export const caller = createCallerFactory(appRouter)(createTRPCContext)
 
 export type AppRouter = typeof appRouter

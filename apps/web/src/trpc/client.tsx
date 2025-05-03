@@ -6,12 +6,12 @@ import { createTRPCClient, httpBatchStreamLink, httpSubscriptionLink, loggerLink
 import { createTRPCContext } from "@trpc/tanstack-react-query"
 import { useState } from "react"
 import superjson from "superjson"
-import { makeQueryClient } from "#/lib/query-client"
 import type { AppRouter } from "#/server/routers/_app"
+import { makeQueryClient } from "#/trpc/query-client"
 
-let clientQueryClientSingleton: QueryClient
-export const { TRPCProvider: BaseTRPCProvider, useTRPC } = createTRPCContext<AppRouter>()
+export const { TRPCProvider, useTRPC } = createTRPCContext<AppRouter>()
 
+let clientQueryClientSingleton: QueryClient | undefined = undefined
 function getQueryClient() {
 	if (typeof window === "undefined") {
 		// Server: always make a new query client
@@ -21,6 +21,7 @@ function getQueryClient() {
 	// biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
 	return (clientQueryClientSingleton ??= makeQueryClient())
 }
+
 function getUrl() {
 	const base = (() => {
 		if (typeof window !== "undefined") return ""
@@ -29,7 +30,8 @@ function getUrl() {
 	})()
 	return `${base}/api/trpc`
 }
-export function TRPCProvider(
+
+export function TRPCReactProvider(
 	props: Readonly<{
 		children: React.ReactNode
 	}>,
@@ -69,11 +71,12 @@ export function TRPCProvider(
 			],
 		}),
 	)
+
 	return (
 		<QueryClientProvider client={queryClient}>
-			<BaseTRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
+			<TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
 				{props.children}
-			</BaseTRPCProvider>
+			</TRPCProvider>
 		</QueryClientProvider>
 	)
 }
