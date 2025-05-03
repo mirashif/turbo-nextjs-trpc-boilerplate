@@ -3,6 +3,7 @@ import { Suspense } from "react"
 import { ErrorBoundary } from "react-error-boundary"
 import { getQueryClient, trpc } from "../../server/trpc/server"
 import { HomePage } from "./components/home"
+
 export default function Home() {
 	const queryClient = getQueryClient()
 	queryClient.prefetchQuery(trpc.hello.queryOptions())

@@ -3,11 +3,11 @@
 @plugin "@tailwindcss/typography";
 
 @layer utilities {
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
 
-.scrollbar-hide {
-  scrollbar-width: none;
-  }
+	.scrollbar-hide {
+		scrollbar-width: none;
+	}
 }
