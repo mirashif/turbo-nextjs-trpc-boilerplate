@@ -1,5 +1,4 @@
-import { createTRPCContext } from "../../trpc/context"
-import { createCallerFactory, publicProcedure, router } from "../../trpc/init"
+import {createCallerFactory, createTRPCContext, publicProcedure, router} from "#/trpc/init"
 
 export const appRouter = router({
 	healthcheck: publicProcedure.query(() => "ok"),
@@ -11,10 +10,9 @@ export const appRouter = router({
 	}),
 
 	projects: publicProcedure.query(async ({ ctx }) => {
-		const projects = await ctx.db.query.projects.findMany({
-			with: { user: { columns: { id: true, email: true } } },
-		})
-		return projects
+		return ctx.db.query.projects.findMany({
+			with: {user: {columns: {id: true, email: true}}},
+		});
 	}),
 })
 
